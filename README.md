@@ -1,4 +1,4 @@
-# Chip-seq-protocol
+# Chip-seq/CUT&Tag-seq-protocol
 For Chip-seq/CUT&amp;Tag-seq, I made a very detailed note。
 
 # Including :
