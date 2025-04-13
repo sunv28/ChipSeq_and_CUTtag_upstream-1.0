@@ -3,7 +3,7 @@ For Chip-seq/CUT&amp;Tag-seq, I made a very **detailed** note。
 
 
 
-![](C:\Users\Administrator\Desktop\bioinformation\Chip-seq protocol\picture\086.png)
+<img src="./picture/086.png" width="1200"/>
 
 
 
