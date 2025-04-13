@@ -1,6 +1,6 @@
 
 
-# perface
+# preface
 
 - [CUT&TAG数据分析流程](https://www.protocols.io/view/cut-amp-tag-data-processing-and-analysis-tutorial-e6nvw93x7gmk/v1)
 
