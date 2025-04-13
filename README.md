@@ -7,8 +7,6 @@ For Chip-seq/CUT&Tag-seq, I made a very **detailed** note 📓。
 
 <br>
 
-<br>
-
 ## 📚 Including :  
 
 - ✅ interpretation of quality control reports  
@@ -27,8 +25,6 @@ For Chip-seq/CUT&Tag-seq, I made a very **detailed** note 📓。
 > ⚠️ **This note is not yet complete, only the first half，but there is enough content for reference** 💡  
 
 ---
-
-<br>
 
 <br>
 
