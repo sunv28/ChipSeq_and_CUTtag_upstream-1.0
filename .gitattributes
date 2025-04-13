@@ -1,6 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
-*.Rmd linguist-language=Markdown 
-*.html linguist-language=Markdown
 *.pdf linguist-language=Markdown
