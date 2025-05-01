@@ -1,6 +1,6 @@
 
 
-# preface
+# 1  preface
 
 - [CUT&TAG数据分析流程](https://www.protocols.io/view/cut-amp-tag-data-processing-and-analysis-tutorial-e6nvw93x7gmk/v1)
 
@@ -12,13 +12,13 @@
 
 ***
 
-# Basic knowledge
+# 2  Basic knowledge
 
-## The workflow of Illumina NGS
+## 2.1  The workflow of Illumina NGS
 
 **参考：** [基础——illumina测序原理与细节](https://www.jianshu.com/p/077911bf772d)
 
-### Step 1. Library preparation
+### 2.1.1  Step 1. Library preparation
 
 <table><tr>
   <td><img src="./picture/068.png" width="100%" /></td>
@@ -52,7 +52,7 @@
 
 
 
-### Step 2. Cluster generation
+### 2.1.2  Step 2. Cluster generation
 
 
 
@@ -104,7 +104,7 @@
 
   
 
-### Step 3. Sequencing
+### 2.1.3  Step 3. Sequencing
 
 <table><tr>
   <td><img src="./picture/075.png" width="100%" /></td>
@@ -116,7 +116,7 @@
 
 
 
-### Single-read and Paired-End
+### 2.1.4  Single-read and Paired-End
 
 <img src="./picture/001.png" width="600"/>
 
@@ -124,7 +124,7 @@
 
 
 
-#### 单端测序(Single-read)
+#### 2.1.4.1  单端测序(Single-read)
 
 * **简写:SE50** 只测一个方向，且read长度固定为50 bp
 * **Single-read**首先将DNA样本进行片段化处理形成200-500bp的片段，引物 sequence 连接到DNA片段的一端，然后末端加上adapter，将片段固定在Flowcell上生成DNA簇，上机测序单端读取 sequence 。该方式建库简单，操作步骤少，常用于小基因组、转录组、宏基因组测序。
@@ -132,7 +132,7 @@
 
 
 
-#### 双端测序(Paired-End)
+#### 2.1.4.2  双端测序(Paired-End)
 
 * **简写:25x25 PE** 每个片段会从两个方向进行测序，每个read长度为25 bp
 
@@ -142,7 +142,7 @@
 
 ***
 
-## What are reads, contigs and scaffold?
+## 2.2  What are reads, contigs and scaffold?
 
 <img src="./picture/050.png" width="700"/>
 
@@ -156,7 +156,7 @@
 
 ***
 
-## ChIP-seq theory
+## 2.3  ChIP-seq theory
 
 - 使用甲醛将目标蛋白（组蛋白，转录因子等）与染色质交联固定起来
   <img src="./picture/004.png" width="500"/>
@@ -177,7 +177,7 @@
 
 ***
 
-## CUT&TAG theory
+## 2.4  CUT&TAG theory
 
 * 首先，特异性抗体和靶标蛋白孵育结合；加入Tn5转座酶—Protein A复合物，其中Tn5转座酶两端已装载好建库adapter引物
 
@@ -197,9 +197,9 @@
 
 ***
 
-# Various types of file structure
+# 3  Various types of file structure
 
-## 0-base or 1-base？
+## 3.1  0-base or 1-base？
 
 * [详见](https://genome-blog.gi.ucsc.edu/blog/2016/12/12/the-ucsc-genome-browser-coordinate-counting-systems/)
 
@@ -222,7 +222,7 @@
 
 ***
 
-## CIGAR 字符串
+## 3.2  CIGAR 字符串
 
 CIGAR（Compact Idiosyncratic Gapped Alignment Report） 字符串是一种用于描述比对过程中 sequence 与参考基因组之间关系的格式。CIGAR 字符串以紧凑的方式表示了每个比对中存在的匹配、缺失、插入等操作
 
@@ -260,7 +260,7 @@ CIGAR（Compact Idiosyncratic Gapped Alignment Report） 字符串是一种用�
 
 ***
 
-## SRA
+## 3.3  SRA
 
 SRA 是 NCBI 及其他数据库（如 EBI、DDBJ）用于存储高通量测序数据的一种特殊格式，采用 **Spot-based 存储方式**。SRA 文件包含 **元数据（Metadata）、测序数据（Reads）、质量值（Quality Scores）** 等信息，并采用 **压缩存储** 以减少文件体积。
 
@@ -293,9 +293,9 @@ SRA 是 NCBI 及其他数据库（如 EBI、DDBJ）用于存储高通量测序�
 
 ***
 
-## FASTQ
+## 3.4  FASTQ
 
-### Structure of FASTQ
+### 3.4.1  Structure of FASTQ
 
 对于每个通过质控参数的**cluster**，一个 read 被写入相应样本的 R1 FASTQ 文件，而对于双端测序运行，另外一个 read 也被写入该样本的 R2 FASTQ 文件。  
 
@@ -312,7 +312,7 @@ SRA 是 NCBI 及其他数据库（如 EBI、DDBJ）用于存储高通量测序�
 
 
 
-### FASTQ Sequence Identifier
+### 3.4.2  FASTQ Sequence Identifier
 
 - **Illumina 新格式 (HiSeq/NovaSeq)**
 
@@ -358,7 +358,7 @@ SRA 是 NCBI 及其他数据库（如 EBI、DDBJ）用于存储高通量测序�
 
 
 
-### phred33 and phred64 encoding
+### 3.4.3  phred33 and phred64 encoding
 
 | 编码方式     | 质量值范围 | ASCII 字符范围 | 适用测序仪                          |
 | ------------ | ---------- | -------------- | ----------------------------------- |
@@ -369,7 +369,7 @@ Phred 质量分数越高，表示测序碱基的可靠性越高。
 
 
 
-### View basic information of FASTQ
+### 3.4.4  View basic information of FASTQ
 
 获取 sequence 标识符，其中包含有关测序运行和cluster的信息，有些包含测序平台信息：
 
@@ -381,7 +381,7 @@ zcat <xxx.fastq.gz> | grep "^@" | head -n 5
 
 ***
 
-## SAM
+## 3.5  SAM
 
 * [SAM文件详细指南](https://samtools.github.io/hts-specs/SAMtags.pdf)
 * **SAM** 文件是 Sequence Alignment/Map 格式的简称，从名字就可以看出，该文件格式设计初衷就是为了记录比对结果的。 但是由于其在记录的比对结果的同时，其实也记录了 sequence 本身，因此也可以作为测序数据的存储格式。
@@ -390,7 +390,7 @@ zcat <xxx.fastq.gz> | grep "^@" | head -n 5
 
 
 
-### SAM Header
+### 3.5.1  SAM Header
 
 **SAM Header** 以 `@` 开头，包含元数据，如参考基因组信息、样本信息、比对工具等
 
@@ -434,7 +434,7 @@ SP:Caenorhabditis elegans
 
 
 
-### SAM Alignment
+### 3.5.2  SAM Alignment
 
 **SAM Alignment**  文件包含测序比对的结果，每一行代表一条**read**的比对信息，字段以 (`\t`) 分隔。
 
@@ -469,7 +469,7 @@ AA?CC:    RG:Z:1    NH:i:1    NM:i:0
 
 
 
-### FLAG值
+### 3.5.3  FLAG值
 
 **FLAG值**：在 **SAM/BAM** 格式中，`FLAG` 是一个 **位掩码（bitmask）**，用不同的二进制位表示不同的比对属性。每个位的含义如下（**从右到左**，最低位是 `2^0`）：
 
@@ -504,7 +504,7 @@ AA?CC:    RG:Z:1    NH:i:1    NM:i:0
 
 ***
 
-## BAM
+## 3.6  BAM
 
 **BAM** 文件是通过 bgzip压缩过的**SAM**文件。因此二者记录的信息本质是一样的。bgzip 对文件的压缩，其结果使文件被压缩成了一系列的'BGZF block'单元，默认情况下，每个单元大小不超过64K。除了节省存储空间之外，另一个好处就是可以通过建立索引加速查询
 
@@ -516,7 +516,7 @@ AA?CC:    RG:Z:1    NH:i:1    NM:i:0
 
 ***
 
-## CRAM
+## 3.7  CRAM
 
 * **CRAM** 文件是一种用于存储 DNA  sequence 比对数据的压缩格式，类似于 **BAM** 文件，为**BAM**的高压缩格式，使得**文件体积更小**，从而节省存储空间和传输时间
 
@@ -532,9 +532,9 @@ AA?CC:    RG:Z:1    NH:i:1    NM:i:0
 
 ***
 
-## BED
+## 3.8  BED
 
-### 基本 BED 格式（BED3）
+### 3.8.1  基本 BED 格式（BED3）
 
 | Chromosome | Start | End  |
 | ---------- | ----- | ---- |
@@ -548,7 +548,7 @@ AA?CC:    RG:Z:1    NH:i:1    NM:i:0
 
 
 
-### 扩展 BED 格式（BED6）
+### 3.8.2  扩展 BED 格式（BED6）
 
 | Chromosome | Start | End  | Name  | Score | Strand |
 | ---------- | ----- | ---- | ----- | ----- | ------ |
@@ -562,7 +562,7 @@ AA?CC:    RG:Z:1    NH:i:1    NM:i:0
 
 
 
-### 完整 BED 格式（BED12）
+### 3.8.3  完整 BED 格式（BED12）
 
 对于描述更复杂的区间，如包含多个**“块”（block）**的区间（如跨多个外显子的转录本）
 
@@ -580,7 +580,7 @@ AA?CC:    RG:Z:1    NH:i:1    NM:i:0
 
 
 
-### BEDPE 格式
+### 3.8.4  BEDPE 格式
 
 BEDPE 格式（BED Paired-End）是用来描述 **paired-end**  reads在基因组上位置的格式，它包含两个读取对的起始和结束位置等信息。通常用于分析测序数据中成对读取的配对和片段长度等。
 
@@ -598,13 +598,13 @@ BEDPE 格式（BED Paired-End）是用来描述 **paired-end**  reads在基因�
 
 ***
 
-## GFF/GTF
+## 3.9  GFF/GTF
 
 * [基因组注释文件(GFF,GTF)下载的五种方法](https://blog.csdn.net/u011262253/article/details/89363809)
 
   
 
-### GFF
+### 3.9.1  GFF
 
 * [GFF](https://gmod.org/wiki/GFF3) (General Feature Format Version 3) 是一种用于描述基因组 **feature**（如基因、外显子、转录本等）的文本格式。它能够有效地表示生物 sequence 中的不同特征
 
@@ -631,7 +631,7 @@ BEDPE 格式（BED Paired-End）是用来描述 **paired-end**  reads在基因�
 
 
 
-### GTF
+### 3.9.2  GTF
 
 -   `GTF`(gene transfer format)，主要是用来对基因进行注释
 
@@ -659,7 +659,7 @@ BEDPE 格式（BED Paired-End）是用来描述 **paired-end**  reads在基因�
 
 
 
-### Different from GFF of GTF
+### 3.9.3  Different from GFF of GTF
 
 | 对比项          | **`GFF3`**                                               | **`GTF2`**                                        |
 | --------------- | -------------------------------------------------------- | ------------------------------------------------- |
@@ -672,7 +672,7 @@ BEDPE 格式（BED Paired-End）是用来描述 **paired-end**  reads在基因�
 
 ***
 
-## VCF
+## 3.10  VCF
 
 * [VCF](https://samtools.github.io/hts-specs/VCFv4.5.pdf) (Variant Call Format) 是一种用于存储变异信息（如 SNP、插入、缺失等）的文本格式，通常用于表示基因组 sequence 的变化。
 
@@ -702,7 +702,7 @@ BEDPE 格式（BED Paired-End）是用来描述 **paired-end**  reads在基因�
 
 ***
 
-## chrom.sizes
+## 3.11  chrom.sizes
 
 染色体长度信息文件(**chrom.sizes**)，该文件保存了基因组中的染色体名称已经对应的长度
 
@@ -767,9 +767,9 @@ There are three ways to obtain the **chrom.sizes** file
 
 ***
 
-## Bedgraph and BigWIG
+## 3.12  Bedgraph and BigWIG
 
-### Bedgraph 
+### 3.12.1  Bedgraph 
 
 * Bedgraph 是一种 **用于表示基因组上连续信号轨迹** 的**文本**格式
 * BigWig 是从 bed/bam 文件统计每个**区间**的 read 覆盖度（coverage）得来的
@@ -810,7 +810,7 @@ There are three ways to obtain the **chrom.sizes** file
 
 
 
-### BigWIG
+### 3.12.2  BigWIG
 
 - BigWig 类似于Bedgraph，是一种 **用于表示基因组上连续信号轨迹** 的**压缩二进制文件**格式。
 
@@ -836,7 +836,7 @@ There are three ways to obtain the **chrom.sizes** file
 
   
 
-### Different from Bedgraph and BigWIG
+### 3.12.3  Different from Bedgraph and BigWIG
 
 | 特性         | **bedGraph**                   | **BigWig**                   |
 | ------------ | ------------------------------ | ---------------------------- |
@@ -850,7 +850,7 @@ There are three ways to obtain the **chrom.sizes** file
 
 ***
 
-# Environment set up
+# 4  Environment set up
 
 使用conda进行环境的管理
 
@@ -864,9 +864,9 @@ There are three ways to obtain the **chrom.sizes** file
 
 ***
 
-# Convert SRA to FASTQ
+# 5  Convert SRA to FASTQ
 
-## parallel-fastq-dump
+## 5.1  parallel-fastq-dump
 
 * `fastq-dump` 是 NCBI SRA Toolkit([**sratoolkit**](https://github.com/ncbi/sra-tools))中的一个工具，用于Convert SSR to FASTQ
 
@@ -912,7 +912,7 @@ parallel-fastq-dump
 
 ***
 
-# QC Report and Data cleaning—trim-galore
+# 6  QC Report and Data cleaning—trim-galore
 
 `trim-galore`有2个小软件，分别是 `cutadapt` 用于**去除 adapter **及**质量过滤**，`fastqc` 用于查看**数据质量分布**
 
@@ -924,7 +924,7 @@ parallel-fastq-dump
 
 ***
 
-## QC Report——fastqc
+## 6.1  QC Report——fastqc
 
 > [!CAUTION]
 >
@@ -1021,7 +1021,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-## Stucture of QC report
+## 6.2  Stucture of QC report
 
 [QC report详情](https://mugenomicscore.missouri.edu/PDF/FastQC_Manual.pdf)
 
@@ -1029,7 +1029,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 
 
-### Basic Statistics
+### 6.2.1  Basic Statistics
 
 <img src= "./picture/013.png" width="700"/>
 
@@ -1041,7 +1041,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-### Per base sequence quality
+### 6.2.2  Per base sequence quality
 
 <img src= "./picture/014.png" width="900"/>
 
@@ -1068,7 +1068,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-### Per tile sequence quality
+### 6.2.3  Per tile sequence quality
 
 <img src= "./picture/015.png" width="700"/>
 
@@ -1105,7 +1105,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-### Per sequence quality scores
+### 6.2.4  Per sequence quality scores
 
 <img src= "./picture/017.png" width="700"/>
 
@@ -1142,7 +1142,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-### Per base sequence content
+### 6.2.5  Per base sequence content
 
 <img src= "./picture/018.png" width="700"/>
 
@@ -1174,7 +1174,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-### Per base sequence content in CUT&Tag
+### 6.2.6  Per base sequence content in CUT&Tag
 
 
 
@@ -1189,7 +1189,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 ***
 
 
-### Per sequence GC conten
+### 6.2.7  Per sequence GC conten
 
 <img src="./picture/020.png" width="700"/>
 
@@ -1218,7 +1218,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-### Per base N content
+### 6.2.8  Per base N content
 
 <img src="./picture/022.png" width="700"/>
 
@@ -1259,7 +1259,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-### Sequence Length Distribution
+### 6.2.9  Sequence Length Distribution
 
 
 **Data cleaning 前**：
@@ -1316,7 +1316,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-### Sequence Duplication Level
+### 6.2.10  Sequence Duplication Level
 
 <img src="./picture/025.png" width="700"/>
 
@@ -1355,7 +1355,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-### Overrepresented sequences
+### 6.2.11  Overrepresented sequences
 
 <img src="./picture/026.png" width="800"/>
 
@@ -1391,7 +1391,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-### Adapter Content
+### 6.2.12  Adapter Content
 
 **没去除adapter**
 
@@ -1411,7 +1411,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-### Overrepresented Kmers
+### 6.2.13  Overrepresented Kmers
 
 <img src="./picture/029.png" width="700"/>
 
@@ -1439,7 +1439,7 @@ fastqc IP_H3K27ac_Vehicle_1_trimmed.fq.gz -o fatqc/  -t 12
 
 ***
 
-## fastqc是如何检测adapter的呢？
+## 6.3  fastqc是如何检测adapter的呢？
 
 **参考：**[基础——illumina测序原理与细节](https://www.jianshu.com/p/077911bf772d)
 
@@ -1464,9 +1464,9 @@ SOLID Small RNA Adapter                     CGCCTTGGCCGT
 
 ***
 
-## Data cleaning—cutadapt
+## 6.4  Data cleaning—cutadapt
 
-### Theory
+### 6.4.1  Theory
 
 * [cutadapt](https://github.com/FelixKrueger/TrimGalore/blob/master/Docs/Trim_Galore_User_Guide.md)
 
@@ -1542,7 +1542,7 @@ SOLID Small RNA Adapter                     CGCCTTGGCCGT
 
     
 
-### parameters
+### 6.4.2  parameters
 
 ```bash
 trim_galore  # 输入文件名
@@ -1660,11 +1660,11 @@ fastp \
 
 ***
 
-# Reads Alignment
+# 7  Reads Alignment
 
-## Alignment theory
+## 7.1  Alignment theory
 
-### 如何评估序列相似？
+### 7.1.1  如何评估序列相似？
 
 * 序列相似有2个指标：**一致度(identity)** ，**相似度(similarity)**
 
@@ -1681,7 +1681,7 @@ fastp \
 
 ***
 
-### 常见的DNA替换记分矩阵
+### 7.1.2  常见的DNA替换记分矩阵
 
   * **等价矩阵(unitarymatrix)** :最简单的替换计分矩阵，其中，相同的碱基之间匹配得分为1，而不同碱基间的替换得分为0。
 
@@ -1711,7 +1711,7 @@ fastp \
 
 ***
 
-### What is the alignment?
+### 7.1.3  What is the alignment?
 
 **序列比对法(alignment)** :两条序列的alignment就是把 序列s 和 序列t 这两个字符串上下排列起来，在某些位置插入空格(gap)。
 
@@ -1731,7 +1731,7 @@ fastp \
 
 ***
 
-### Global Alignment
+### 7.1.4  Global Alignment
 
 * **Needleman-Wunsch算法**
 
@@ -1755,7 +1755,7 @@ fastp \
 
 ***
 
-### Local Alignment
+### 7.1.5  Local Alignment
 
 * **Smith-Waterman算法**
 
@@ -1777,7 +1777,7 @@ fastp \
 
 ***
 
-### Different of Global Alignment and Local Alignment in reads alignment
+### 7.1.6  Different of Global Alignment and Local Alignment in reads alignment
 
 | 特征         | 全局比对 (Global Alignment)                                  | 局部比对 (Local Alignment)                                   |
 | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -1791,7 +1791,7 @@ fastp \
 
 ***
 
-### 一致度(identity)和相似度(similarity)
+### 7.1.7  一致度(identity)和相似度(similarity)
 
 <img src="./picture/134.png" width="700"/>
 
@@ -1799,7 +1799,7 @@ fastp \
 
 ***
 
-### BLAST
+### 7.1.8  BLAST
 
 * 具体参考[轻松理解BLAST搜索原理](https://blog.csdn.net/weixin_46432623/article/details/105520286)  [视频1](https://www.bilibili.com/video/BV1oY411p7jV/?spm_id_from=333.337.search-card.all.click&vd_source=951f1d2399bb1456eb6ac0a86e6efdd1)
 
@@ -1871,7 +1871,7 @@ fastp \
 
 ***
 
-### Different of DNAseq alignment and RNAseq alignment
+### 7.1.9  Different of DNAseq alignment and RNAseq alignment
 
 * **DNAseq**：DNAseq的序列通常是**连续**的，与参考基因组的比对无需考虑剪接事件。
 
@@ -1881,7 +1881,7 @@ fastp \
 
 ***
 
-### Method of DNAseq alignment——seed and extend
+### 7.1.10  Method of DNAseq alignment——seed and extend
 
 [seed-and-extend](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4695832) **类似于blast算法**
 
@@ -1903,7 +1903,7 @@ fastp \
 
 ***
 
-### Different of Signle-read alignment and Paired-End alignment
+### 7.1.11  Different of Signle-read alignment and Paired-End alignment
 
 **假设一条DNA序列包含许多重复序列（下图红色）**
 
@@ -1917,7 +1917,7 @@ fastp \
 
 ***
 
-## Software selection of Alignment
+## 7.2  Software selection of Alignment
 
 * **Bowtie2**
 
@@ -1943,9 +1943,9 @@ fastp \
 
 ***
 
-## Bowtie2
+## 7.3  Bowtie2
 
-### Bowtie2 preparation
+### 7.3.1  Bowtie2 preparation
 
 * **index download**：[Bowtie2 官方网站](https://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
 
@@ -2011,7 +2011,7 @@ fastp \
 
     
 
-### Bowtie2 parameters
+### 7.3.2  Bowtie2 parameters
 
 [Bowtie 2: Manual](https://bowtie-bio.sourceforge.net/bowtie2/manual.shtml#the-bowtie2-aligner)
 
@@ -2261,7 +2261,7 @@ bowtie2 \
 
 
 
-## Use the E.coli genome to normalize data (optional/CUT&Tag)(step1)
+## 7.4  Use the E.coli genome to normalize data (optional/CUT&Tag)(step1)
 
 - **背景**：
 
@@ -2347,7 +2347,7 @@ bowtie2 \
 
 ***
 
-# samtools
+# 8  samtools
 
 * samtools是一个用于操作sam和bam文件的工具合集。能够实现二进制查看、格式转换、排序及合并等功能，结合sam格式中的flag、tag等信息，还可以完成比对结果的统计汇总
 
@@ -2357,7 +2357,7 @@ bowtie2 \
 
 ***
 
-## Samtools sort
+## 8.1  Samtools sort
 
 * `samtools sort`可以将sam转化为BAM或CRAM，并进行排序
 
@@ -2426,7 +2426,7 @@ samtools sort  Input_H3K27ac_XY108.sam \
 
 ***
 
-## Samtools idxstats——view the alignment with chromosome
+## 8.2  Samtools idxstats——view the alignment with chromosome
 
 samtools idxstats 命令可以显示 BAM 文件中所有染色体（参考序列）的名称、长度，以及每个染色体上比对的片段数量。
 
@@ -2462,7 +2462,7 @@ samtools idxstats 命令可以显示 BAM 文件中所有染色体（参考序列
 
 ***
 
-## Samtools flagstat——view the alignment results
+## 8.3  Samtools flagstat——view the alignment results
 
 * 比对结束后，需要了解比对结果的情况，可以采用`samtools flagstat`
 
@@ -2500,7 +2500,7 @@ samtools idxstats 命令可以显示 BAM 文件中所有染色体（参考序列
 
 ***
 
-# Convert SAM to BAM/CRAM
+# 9  Convert SAM to BAM/CRAM
 
 We use the [Samtools sort](#Samtools-sort) to convert SAM file to BAM/CRAM file ,and sort the file by coordinate.
 
@@ -2519,9 +2519,9 @@ samtools sort  Input_H3K27ac_XY108.sam \
 
 ***
 
-# Remove duplicates
+# 10  Remove duplicates
 
-## Remove duplicates theory
+## 10.1  Remove duplicates theory
 
 * **PCR duplicates**：不同的序列在进行PCR扩增时，扩增的倍数应该是相同的。但是由于聚合酶的偏好性，PCR扩增次数过多的情况下，会导致一些序列持续扩增，而另一些序列扩增到一定程度后便不再进行，也就是我们常说的PCR偏好性。
 
@@ -2576,9 +2576,9 @@ samtools sort  Input_H3K27ac_XY108.sam \
 
 ***
 
-## Patterned Flowcell?
+## 10.2  Patterned Flowcell?
 
-### 传统未图案化流动池(Non-Patterned Flowcell)
+### 10.2.1  传统未图案化流动池(Non-Patterned Flowcell)
 
 * 在**Non-Patterned Flowcell**中，DNA 片段随机地附着在流动池的表面上，并形成测序cluster。这种随机分布可能导致一些区域的cluster密度过高，而其他区域的cluster密度过低，从而影响测序的均匀性和数据产出
 
@@ -2586,7 +2586,7 @@ samtools sort  Input_H3K27ac_XY108.sam \
 
   
 
-### 图案化流动池(Patterned Flowcell)
+### 10.2.2  图案化流动池(Patterned Flowcell)
 
 * **Patterned Flowcell**的表面覆盖着一层规则排列的纳米井（nanowells），这些nanowells的作用是控制 DNA 簇的生长位置。每个nanowells只能容纳一个测序cluster，因此cluster的分布更加均匀。
 * 由于每个nanowells都可以独立形成一个测序cluster，这种设计大大增加了流动池上的有效cluster数，显著提高了测序的通量。
@@ -2601,13 +2601,13 @@ samtools sort  Input_H3K27ac_XY108.sam \
 
 
 
-### Patterned Flowcell与光学重复检测的关系
+### 10.2.3  Patterned Flowcell与光学重复检测的关系
 
 由于**Patterned Flowcell**中的测序cluster位置是预先确定的，因此光学重复（optical duplicates）在这种设计下变得更容易识别和控制。`Optical Duplicate Pixel Distance` 的默认值在图案化流动池中通常设置得更高（如 2500），以适应这种新型设计
 
 
 
-### 如何查看自己数据是否使用Patterned Flowcell？
+### 10.2.4  如何查看自己数据是否使用Patterned Flowcell？
 
 **查看FASTQ文件中@行信息来推断** `zcat <xxx.fastq.gz> | grep "^@" | head -n 5`
 
@@ -2621,9 +2621,9 @@ samtools sort  Input_H3K27ac_XY108.sam \
 
 ***
 
-## Software selection of remove duplicates
+## 10.3  Software selection of remove duplicates
 
-### samtools rmdup
+### 10.3.1  samtools rmdup
 
 * 如果多个reads具有相同的比对位置时，`samtools rmdup`将它们标记为duplicates，然后去除重复，通常只保留第一个识别到的reads。
 
@@ -2635,7 +2635,7 @@ samtools sort  Input_H3K27ac_XY108.sam \
 
 
 
-### Picard MarkDuplicates
+### 10.3.2  Picard MarkDuplicates
 
 * 与`samtools rmdup`不同的是，`Picard MarkDuplicates`仅仅是对duplicates做一个标记，只在需要的时候对reads进行去重。而`samtools rmdup`则是直接将其识别出来的重复reads去掉。
 
@@ -2651,7 +2651,7 @@ samtools sort  Input_H3K27ac_XY108.sam \
 
 ***
 
-## Picard MarkDuplicates
+## 10.4  Picard MarkDuplicates
 
 * [Picard MarkDuplicates](https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard)
 * `Picard MarkDuplicates` ,它会对 **reads 做一种临时排序（sort）**，以便找出哪些是重复的（duplicates）
@@ -2660,7 +2660,7 @@ samtools sort  Input_H3K27ac_XY108.sam \
 
 
 
-### Picard MarkDuplicates parameters
+### 10.4.1  Picard MarkDuplicates parameters
 
 ```bash
 picard MarkDuplicates
@@ -2820,7 +2820,7 @@ picard MarkDuplicates
 
 ***
 
-### Remove duplicates strategy
+### 10.4.2  Remove duplicates strategy
 
 **策略:先查看重复数，再考虑是否去除重复**
 
@@ -2921,7 +2921,7 @@ picard MarkDuplicates
 
 ***
 
-## Remove duplicates in CUT&Tag
+## 10.5  Remove duplicates in CUT&Tag
 
 * 在 **CUT&Tag**实验中，DNA被转座酶（Tn5）切割并标记，形成包含抗体靶向区域的短片段。这些短片段通常会映射到染色体的特定位置
 
@@ -2945,9 +2945,9 @@ picard MarkDuplicates
 
 ***
 
-#  Assess mapped fragment size distribution(optial)
+# 11  Assess mapped fragment size distribution(optial)
 
-## What is the fragment ?
+## 11.1  What is the fragment ?
 
 - read1 和 read2 比对到参考基因组后，**从 read1 的 5' 端到 read2 的 3' 端之间**（无论方向），就是 **fragment** 
 
@@ -2961,7 +2961,7 @@ picard MarkDuplicates
 
 
 
-## Tn5 转座酶偏好性
+## 11.2  Tn5 转座酶偏好性
 
 * 以**组蛋白修饰为靶标**的 CUT&Tag  反应主要产生**核糖体长度（约 180 bp）**或**该长度倍数**的片段
 
@@ -3000,7 +3000,7 @@ picard MarkDuplicates
 
 
 
-## Extract fragment length and count
+## 11.3  Extract fragment length and count
 
 ```bash
 # -F 0x04参数过滤掉未比对的read。
@@ -3024,9 +3024,9 @@ awk -v OFS="\t" '{print $2, $1/2}' > fragmentLen.txt
 
 
 
-## Draw picture
+## 11.4  Draw picture
 
-### python
+### 11.4.1  python
 
 ```python
 import pandas as pd
@@ -3080,11 +3080,11 @@ plt.show()
 
 ***
 
-# Alignment filtering
+# 12  Alignment filtering
 
-## Alignment filtering with MAPQ (optinal)
+## 12.1  Alignment filtering with MAPQ (optinal)
 
-### Filtering with MAPQ
+### 12.1.1  Filtering with MAPQ
 
 **Some projects may require more stringent filtering on the alignment quality score**
 
@@ -3104,7 +3104,7 @@ samtools view -q <int> <before.bam/sam/cram> -o <after.bam/sam/cram>
 
 
 
-###  View the reads before and after filtering
+### 12.1.2  View the reads before and after filtering
 
 - 创建一个bashrc脚本`vim filter_contrast.bashrc`
 
@@ -3143,7 +3143,7 @@ filter_contrast() {
 
 ***
 
-## Alignment filtering with Mapped Read Pairs
+## 12.2  Alignment filtering with Mapped Read Pairs
 
 **注意： 我们需要过滤掉对未必对的reads。**
 
@@ -3160,9 +3160,9 @@ samtools view -F 0x04 <before.bam/sam/cram> -o <after.bam/sam/cram>
 
 ***
 
-# Bedtools
+# 13  Bedtools
 
-## Bedtools introduction
+## 13.1  Bedtools introduction
 
 <img src="./picture/046.png" width="150"/>
 
@@ -3199,7 +3199,7 @@ Bedtools（[bedtools: a powerful toolset for genome arithmetic — bedtools 2.31
 
 ***
 
-## Bedtools genomecov
+## 13.2  Bedtools genomecov
 
 * [Bedtools genomecov](https://bedtools.readthedocs.io/en/latest/content/tools/genomecov.html)
 
@@ -3314,7 +3314,7 @@ bedtools genomecov -bg  -i $primary_alignment -g $chromSize > ${sample}.fragment
 
 ***
 
-## Bedtools intersect
+## 13.3  Bedtools intersect
 
 * [bedtools intersect](https://bedtools.readthedocs.io/en/latest/content/tools/intersect.html): This command is used to find overlapping features between two datasets
 * if you have **large file to intersect** ,suggesting you sort your file ,and add `-sorted` option in the `bedtools intersect` to reduce memory, Otherwise Out of Memory will kill the program.  
@@ -3411,9 +3411,9 @@ bedtools intersect
 
 ***
 
-## Bedtools bamtobed
+## 13.4  Bedtools bamtobed
 
-## 
+## 13.5  
 
 [bedtools bamtobed](https://bedtools.readthedocs.io/en/latest/content/tools/bedtobam.html) 用于将 BAM 文件转换为 BED 格式。
 
@@ -3445,9 +3445,9 @@ bedtools bamtobed -i sample.bam > sample.bed -bedpe
 
 ***
 
-# Convert BAM to BED and BED Operate
+# 14  Convert BAM to BED and BED Operate
 
-## Convert BAM to BED with bedtools
+## 14.1  Convert BAM to BED with bedtools
 
 [bedtools bamtobed](#Bedtools bamtobed) 用于将 BAM 文件转换为 BED 格式。
 
@@ -3459,7 +3459,7 @@ bedtools bamtobed -i sample.bam > sample.bed -bedpe
 
 ***
 
-## Keep the read pairs that are on the same chromosome and fragment length less than 1000bp（optial）
+## 14.2  Keep the read pairs that are on the same chromosome and fragment length less than 1000bp（optial）
 
 - 对于**Paired-End**需进一步过滤并保留位于相同染色体上且fragment长度小于 1000bp 的read pairs
 
@@ -3480,7 +3480,7 @@ bedtools bamtobed -i sample.bam > sample.bed -bedpe
 
 ***
 
-## Extract the fragment related columns
+## 14.3  Extract the fragment related columns
 
 我们可以提取**fragment**从**bedpe**文件中
 
@@ -3510,7 +3510,7 @@ sort -k1,1 -k2,2n -k3,3n > sample.fragments.bed
 
 ***
 
-## Evaluate the reproducibility of replicate samples(optial)
+## 14.4  Evaluate the reproducibility of replicate samples(optial)
 
 为了评估不同重复样本之间以及不同条件下的重现性：首先将基因组分成**500 bp** 的窗口（bin），然后计算每个窗口中**read count的 log2 转换值**。接着，计算每对重复样本之间的 **Pearson 相关性**，并通过层次聚类的方式展示。
 
@@ -3681,9 +3681,9 @@ sort -k1,1 -k2,2n -k3,3n > sample.fragments.bed
 
 ***
 
-# Convert BED to Bedgraph
+# 15  Convert BED to Bedgraph
 
-## Convert BED to Bedgraph
+## 15.1  Convert BED to Bedgraph
 
 * 在**CUT&Tag**和**CUT&RUN**中的`SEACR`的**peak calling**需要Bedgraph文件作为输入
 
@@ -3709,7 +3709,7 @@ sort -k1,1 -k2,2n -k3,3n > sample.fragments.bed
 
 ***
 
-## Use the E.coli genome to normalize data (optional/CUT&Tag)(step2)
+## 15.2  Use the E.coli genome to normalize data (optional/CUT&Tag)(step2)
 
 * [Click here to view step 1](#Use-the-E.coli-genome-to-normalize-data-(optional/CUT&Tag)(step1))
 
@@ -3793,9 +3793,9 @@ sort -k1,1 -k2,2n -k3,3n > sample.fragments.bed
 
 ***
 
-# Peak calling
+# 16  Peak calling
 
-## macs2
+## 16.1  macs2
 
 * [Home · macs3-project/MACS Wiki](https://github.com/macs3-project/MACS/wiki)
 
@@ -3805,7 +3805,7 @@ sort -k1,1 -k2,2n -k3,3n > sample.fragments.bed
 
 ***
 
-## SEACR(For CUT&Tag and CUT&RUN)
+## 16.2  SEACR(For CUT&Tag and CUT&RUN)
 
 * 在ChIP-seq数据分析中，常用的方法是**peak calling**，通过比较目标ChIP-seq信号与背景噪音来识别基因组中信号富集的区域。这类算法通常采用泊松分布或负二项分布模型来衡量信号与背景的差异。然而，由于ChIP-seq实验通常测序较深，背景噪音较高，因此大多数ChIP-seq峰值识别算法优化时更注重高灵敏度，以便从噪音中区分出信号。
 
@@ -3822,7 +3822,7 @@ sort -k1,1 -k2,2n -k3,3n > sample.fragments.bed
 
 
 
-### SEACR Theory
+### 16.2.1  SEACR Theory
 
 * [SEACR](<https://epigeneticsandchromatin.biomedcentral.com/articles/10.1186/s13072-019-0287-4>)
 
@@ -3838,7 +3838,7 @@ sort -k1,1 -k2,2n -k3,3n > sample.fragments.bed
 
 
 
-### SEACR 选项
+### 16.2.2  SEACR 选项
 
 为了简化用户的分析流程，SEACR 仅提供了两个主要的选项
 
@@ -3858,7 +3858,7 @@ sort -k1,1 -k2,2n -k3,3n > sample.fragments.bed
 
 
 
-### SEACR安装与用法
+### 16.2.3  SEACR安装与用法
 
 * [SEACR GitHub](https://github.com/FredHutch/SEACR)
 
@@ -3940,7 +3940,7 @@ echo -e "\e[32mBackground peak calculation for ${samples[1]} using ${samples[0]}
 
 
 
-### SEACR网页版
+### 16.2.4  SEACR网页版
 
 * 作者开发了 [SEACR 网络服务器](http://seacr.fredhutch.org)用于随时随地地分析CUT&Tag和CUT&RUN 数据。 
 
@@ -3950,7 +3950,7 @@ echo -e "\e[32mBackground peak calculation for ${samples[1]} using ${samples[0]}
 
 
 
-### Structure of SEACR bed file
+### 16.2.5  Structure of SEACR bed file
 
 **Example SEACR BED Entry：**
 
@@ -3978,7 +3978,7 @@ echo -e "\e[32mBackground peak calculation for ${samples[1]} using ${samples[0]}
 
 ***
 
-## Number of peaks
+## 16.3  Number of peaks
 
 **通过读取生成的bed文件，获取不同样本，不同peak类型的数目**
 
@@ -4130,7 +4130,7 @@ plt.show()
 
 ***
 
-## Comparing the same peaks on replicate sample data sets(optial)
+## 16.4  Comparing the same peaks on replicate sample data sets(optial)
 
 * Using tools: [Bedtools intersect](#Bedtools-intersect)
 
@@ -4238,7 +4238,7 @@ print(df)
 
 ***
 
-## Calculates FRiPs (Fraction of Reads in Peaks)
+## 16.5  Calculates FRiPs (Fraction of Reads in Peaks)
 
 * **FRiPs** is a measure of how many sequencing reads fall within peak regions.
 
@@ -4262,7 +4262,7 @@ print(df)
 
 
 
-### Sorting file procedure
+### 16.5.1  Sorting file procedure
 
 **1 Check your bam file order**
 
@@ -4356,7 +4356,7 @@ print(df)
 
 
 
-### Code with Sorting file and calcuating FRIPs 
+### 16.5.2  Code with Sorting file and calcuating FRIPs 
 
 ```bash
 #!/bin/bash
@@ -4543,7 +4543,7 @@ plt.show()
 
 ***
 
-# Genome browser
+# 17  Genome browser
 * Typically we are interested in visualizing a chromatin landscape in regions using a genome browser.
 
 * You can input **bed** and **bedgraph** file
@@ -4558,9 +4558,9 @@ plt.show()
 
 ***
 
-# Normalization methods
+# 18  Normalization methods
 
-## RPKM
+## 18.1  RPKM
 
 **RPKM(Reads Per Kilobase Million)**
 
@@ -4576,7 +4576,7 @@ $$
 
 ***
 
-## CPM
+## 18.2  CPM
 
 **CPM (Counts Per Million)**
 
@@ -4592,7 +4592,7 @@ $$
 
 ***
 
-## BPM
+## 18.3  BPM
 
 **BPM (Bins Per Million mapped reads)**
 
@@ -4610,7 +4610,7 @@ $$
 
 ***
 
-## RPGC
+## 18.4  RPGC
 
 **RPGC (Reads Per Genomic Content)**
 
@@ -4629,9 +4629,9 @@ $$
 
 ***
 
-## ChIPseqSpikeInFree
+## 18.5  ChIPseqSpikeInFree
 
-### ChIPseqSpikeInFree perface
+### 18.5.1  ChIPseqSpikeInFree perface
 
 - [ChIPseqSpikeInFree: A Spike-in Free ChIP-Seq Normalization Approach for Detecting Global Changes in Histone Modifications](https://github.com/stjude/ChIPseqSpikeInFree)
 
@@ -4707,7 +4707,7 @@ $$
 
 
 
-### ChIPseqSpikeInFree code
+### 18.5.2  ChIPseqSpikeInFree code
 
 ```R
 # R包安装
@@ -4794,7 +4794,7 @@ ChIPseqSpikeInFree(
 
 
 
-### ChIPseqSpikeInFree 网页版
+### 18.5.3  ChIPseqSpikeInFree 网页版
 
 - To use the tool, you will need to create a **DNAnexus** account at https://platform.dnanexus.com/register?client_id=sjcloudplatform. 
 
@@ -4812,7 +4812,7 @@ ChIPseqSpikeInFree(
 
 ***
 
-# Deeptools
+# 19  Deeptools
 
 <img src="./picture/059.png" width="800"/>
 <img src="./picture/060.png" width="800"/>
@@ -4825,7 +4825,7 @@ ChIPseqSpikeInFree(
 
 
 
-## Deeptools installation
+## 19.1  Deeptools installation
 
 * Requirements
    * **Python 2.7 or Python 3.x**
@@ -4842,7 +4842,7 @@ ChIPseqSpikeInFree(
 
 
 
-## BamCoverage
+## 19.2  BamCoverage
 
 * [bamCoverage — deepTools 3.2.1 documentation](https://test-argparse-readoc.readthedocs.io/en/latest/content/tools/bamCoverage.html)
 
@@ -4975,9 +4975,9 @@ bamCoverage
 
 ***
 
-## computeMatrix
+## 19.3  computeMatrix
 
-### computeMatrix perface
+### 19.3.1  computeMatrix perface
 
 [computeMatrix — deepTools 3.2.1 documentation](https://test-argparse-readoc.readthedocs.io/en/latest/content/tools/computeMatrix.html) 
 
@@ -5000,7 +5000,7 @@ bamCoverage
 
 ***
 
-### computeMatrix scale-regions
+### 19.3.2  computeMatrix scale-regions
 
 `computeMatrix scale-regions` 的工作流程是这样的：
 
@@ -5169,7 +5169,7 @@ computeMatrix scale-regions \
 
 ***
 
-### computeMatrix referencePoint
+### 19.3.3  computeMatrix referencePoint
 
 `omputeMatrix reference-point` 的工作流程如下：
 
@@ -5319,7 +5319,7 @@ computeMatrix reference-point
 
 ***
 
-## plotHeatmap
+## 19.4  plotHeatmap
 
 - [plotHeatmap — deepTools 3.2.1 documentation](https://test-argparse-readoc.readthedocs.io/en/latest/content/tools/plotHeatmap.html)
 
@@ -5447,7 +5447,7 @@ plotHeatmap -m matrix.mat.gz \
 
 ***
 
-## DeepBlue 
+## 19.5  DeepBlue 
 
 - [MPIIComputationalEpigenetics/DeepBlue: DeepBlue Epigenomic Data Server](https://github.com/MPIIComputationalEpigenetics/DeepBlue?tab=readme-ov-file)（这个好像挂掉了）
 - DeepBlue 是一个生物信息学的在线平台，提供了多种基因组数据和生物标志物的数据集。用户可以在 DeepBlue 上访问、查询和下载不同类型的基因组数据，通常包括类似 **bigWig** 和 **BED** 格式的文件，这些文件存储了各类组学数据（如 ChIP-seq、RNA-seq 等）的信号。
@@ -5457,9 +5457,9 @@ plotHeatmap -m matrix.mat.gz \
 
 ***
 
-# Convert Bam to BigWIG and BigWIG Operate
+# 20  Convert Bam to BigWIG and BigWIG Operate
 
-## Convert Bam to BigWIG 
+## 20.1  Convert Bam to BigWIG 
 
 * We use [Samtools sort](#Samtools-sort) to sort the BAM file
 
@@ -5510,14 +5510,14 @@ plotHeatmap -m matrix.mat.gz \
 
 ***
 
-## Heatmap visualization
+## 20.2  Heatmap visualization
 
 * We are also interested in looking at chromatin features at a list of annotated sites(such as promoters sites)
 * For example,  We can use the [computeMatrix](#computeMatrix) and [plotHeatmap](#plotHeatmap) functions from deepTools to generate the heatmap of gene promoters
 
 
 
-### Heatmap over transcription units
+### 20.2.1  Heatmap over transcription units
 
 ```bash
 # 设置并行处理的核心数
@@ -5548,7 +5548,7 @@ plotHeatmap \
 
 
 
-### Heatmap on CUT&Tag peaks
+### 20.2.2  Heatmap on CUT&Tag peaks
 
 - We use the **midpoint of the signal block** returned from `SEACR` to align signals in heatmaps. 
 
@@ -5595,11 +5595,11 @@ plotHeatmap \
 
 ***
 
-# Differential analysis
+# 21  Differential analysis
 
-## DESeq2
+## 21.1  DESeq2
 
-### DEseq2 perface
+### 21.1.1  DEseq2 perface
 
 - DESeq2: [Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)
 - 其通过估计高通量测序实验中计数数据的方差与均值之间的依赖关系，并基于**负二项分布**模型进行差异表达分析。
@@ -5627,7 +5627,7 @@ plotHeatmap \
 
 
 
-### Code
+### 21.1.2  Code
 
 **loading package**
 
