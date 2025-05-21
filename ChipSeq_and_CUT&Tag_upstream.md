@@ -3596,9 +3596,9 @@ sort -k1,1 -k2,2n -k3,3n > sample.fragments.bed
    r = \frac{{\sum (X_i - \overline{X})(Y_i - \overline{Y})}}{{\sqrt{\sum (X_i - \overline{X})^2} \cdot \sqrt{\sum (Y_i - \overline{Y})^2}}}
    $$
 
-   $ X_i $ 和 $ Y_i $ 是两个变量的值。
+   $X_i$ 和 $Y_i$ 是两个变量的值。
 
-   $ \overline{X} $ 和 $ \overline{Y} $ 是两个变量的均值。
+   $\overline{X}$ 和 $\overline{Y}$ 是两个变量的均值。
 
    
 
@@ -5476,7 +5476,7 @@ plotHeatmap -m matrix.mat.gz \
   # Define the variables
   samples=("KCHIP2" "KCHIP2-OE")
   
-  # BAM directory
+  # BigWig directory
   bigwigDir="bigwig"
   
   # BAM directory
@@ -5502,7 +5502,7 @@ plotHeatmap -m matrix.mat.gz \
       bigwig_file="${bigwigDir}/filter${sample}deduplicated.sort.bigwig"
       
       # convert BAM TO bigwig
-      bamCoverage -b "$sort_bam_file" -o "$bigwig_file"
+      bamCoverage -b "$sort_bam_file" -o "$bigwig_file" --binSize 10 --normalizeUsing CPM -p "$threads"
   done
   ```
 
