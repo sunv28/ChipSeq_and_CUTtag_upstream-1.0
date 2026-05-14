@@ -6,7 +6,7 @@
 
 <img src="./picture/086.png" width="1200"/>
 
-<img src="./picture/087.png" width="700"/
+<img src="./picture/087.png" width="1200"/>
 
 
 
@@ -17,6 +17,8 @@
 ## 2.1  The workflow of Illumina NGS
 
 **参考：** [基础——illumina测序原理与细节](https://www.jianshu.com/p/077911bf772d)
+
+<img src="./picture/144.png" width="900"/>
 
 ### 2.1.1  Step 1. Library preparation
 
@@ -158,6 +160,8 @@
 
 ## 2.3  ChIP-seq theory
 
+<img src="./picture/147.png" width="900"/>
+
 - 使用甲醛将目标蛋白（组蛋白，转录因子等）与染色质交联固定起来
   <img src="./picture/004.png" width="500"/>
 
@@ -178,6 +182,8 @@
 ***
 
 ## 2.4  CUT&TAG theory
+
+<img src="./picture/147.png" width="900"/>
 
 * 首先，特异性抗体和靶标蛋白孵育结合；加入Tn5转座酶—Protein A复合物，其中Tn5转座酶两端已装载好建库adapter引物
 
@@ -201,6 +207,8 @@
 
 ## 3.1  0-base or 1-base？
 
+<img src="./picture/148.png" width="900"/>
+
 * [详见](https://genome-blog.gi.ucsc.edu/blog/2016/12/12/the-ucsc-genome-browser-coordinate-counting-systems/)
 
 * 在**0-based**坐标系中，起始位置从 0 开始计数，范围是 **[start, end)** ，即 **end 位置不包含在区间内**。
@@ -223,6 +231,8 @@
 ***
 
 ## 3.2  CIGAR 字符串
+
+<img src="./picture/148.png" width="900"/>
 
 CIGAR（Compact Idiosyncratic Gapped Alignment Report） 字符串是一种用于描述比对过程中 sequence 与参考基因组之间关系的格式。CIGAR 字符串以紧凑的方式表示了每个比对中存在的匹配、缺失、插入等操作
 
@@ -262,6 +272,8 @@ CIGAR（Compact Idiosyncratic Gapped Alignment Report） 字符串是一种用�
 
 ## 3.3  SRA
 
+<img src="./picture/150.png" width="900"/>
+
 SRA 是 NCBI 及其他数据库（如 EBI、DDBJ）用于存储高通量测序数据的一种特殊格式，采用 **Spot-based 存储方式**。SRA 文件包含 **元数据（Metadata）、测序数据（Reads）、质量值（Quality Scores）** 等信息，并采用 **压缩存储** 以减少文件体积。
 
 
@@ -294,6 +306,8 @@ SRA 是 NCBI 及其他数据库（如 EBI、DDBJ）用于存储高通量测序�
 ***
 
 ## 3.4  FASTQ
+
+<img src="./picture/152.png" width="900"/>
 
 ### 3.4.1  Structure of FASTQ
 
@@ -382,6 +396,8 @@ zcat <xxx.fastq.gz> | grep "^@" | head -n 5
 ***
 
 ## 3.5  SAM
+
+<img src="./picture/154.png" width="900"/>
 
 * [SAM文件详细指南](https://samtools.github.io/hts-specs/SAMtags.pdf)
 * **SAM** 文件是 Sequence Alignment/Map 格式的简称，从名字就可以看出，该文件格式设计初衷就是为了记录比对结果的。 但是由于其在记录的比对结果的同时，其实也记录了 sequence 本身，因此也可以作为测序数据的存储格式。
@@ -506,6 +522,8 @@ AA?CC:    RG:Z:1    NH:i:1    NM:i:0
 
 ## 3.6  BAM
 
+<img src="./picture/156.png" width="900"/>
+
 **BAM** 文件是通过 bgzip压缩过的**SAM**文件。因此二者记录的信息本质是一样的。bgzip 对文件的压缩，其结果使文件被压缩成了一系列的'BGZF block'单元，默认情况下，每个单元大小不超过64K。除了节省存储空间之外，另一个好处就是可以通过建立索引加速查询
 
 <img src="./picture/036.png" width="600"/>
@@ -517,6 +535,8 @@ AA?CC:    RG:Z:1    NH:i:1    NM:i:0
 ***
 
 ## 3.7  CRAM
+
+<img src="./picture/156.png" width="900"/>
 
 * **CRAM** 文件是一种用于存储 DNA  sequence 比对数据的压缩格式，类似于 **BAM** 文件，为**BAM**的高压缩格式，使得**文件体积更小**，从而节省存储空间和传输时间
 
@@ -533,6 +553,8 @@ AA?CC:    RG:Z:1    NH:i:1    NM:i:0
 ***
 
 ## 3.8  BED
+
+<img src="./picture/158.png" width="900"/>
 
 ### 3.8.1  基本 BED 格式（BED3）
 
@@ -599,6 +621,8 @@ BEDPE 格式（BED Paired-End）是用来描述 **paired-end**  reads在基因�
 ***
 
 ## 3.9  GFF/GTF
+
+<img src="./picture/160.png" width="900"/>
 
 * [基因组注释文件(GFF,GTF)下载的五种方法](https://blog.csdn.net/u011262253/article/details/89363809)
 
@@ -674,6 +698,8 @@ BEDPE 格式（BED Paired-End）是用来描述 **paired-end**  reads在基因�
 
 ## 3.10  VCF
 
+<img src="./picture/160.png" width="900"/>
+
 * [VCF](https://samtools.github.io/hts-specs/VCFv4.5.pdf) (Variant Call Format) 是一种用于存储变异信息（如 SNP、插入、缺失等）的文本格式，通常用于表示基因组 sequence 的变化。
 
 | #CHROM | POS  | ID   | REF  | ALT  | QUAL | FILTER | INFO  | FORMAT | SAMPLE1 | SAMPLE2 |
@@ -703,6 +729,8 @@ BEDPE 格式（BED Paired-End）是用来描述 **paired-end**  reads在基因�
 ***
 
 ## 3.11  chrom.sizes
+
+<img src="./picture/162.png" width="900"/>
 
 染色体长度信息文件(**chrom.sizes**)，该文件保存了基因组中的染色体名称已经对应的长度
 
@@ -838,13 +866,13 @@ There are three ways to obtain the **chrom.sizes** file
 
 ### 3.12.3  Different from Bedgraph and BigWIG
 
-| 特性         | **bedGraph**                   | **BigWig**                   |
-| ------------ | ------------------------------ | ---------------------------- |
-| **格式**     | 文本格式                       | 二进制格式                   |
-| **存储效率** | 存储效率低，文件较大           | 存储效率高，文件较小         |
-| **访问速度** | 加载和查询速度慢               | 支持高效的随机访问，查询快速 |
-| **查询效率** | 无法直接查询，只能加载整个文件 | 可以快速查询指定区域         |
-| **可读性**   | 可用文本编辑器查看             | 需要特定工具转换或查看       |
+| 特性       | **bedGraph**    | **BigWig**     |
+| -------- | --------------- | -------------- |
+| **格式**   | 文本格式            | 二进制格式          |
+| **存储效率** | 存储效率低，文件较大      | 存储效率高，文件较小     |
+| **访问速度** | 加载和查询速度慢        | 支持高效的随机访问，查询快速 |
+| **查询效率** | 无法直接查询，只能加载整个文件 | 可以快速查询指定区域     |
+| **可读性**  | 可用文本编辑器查看       | 需要特定工具转换或查看    |
 
 
 
